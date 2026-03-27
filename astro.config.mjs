@@ -9,7 +9,7 @@ const react = isKeystatic ? (await import('@astrojs/react')).default : null;
 const cloudflare = isKeystatic ? (await import('@astrojs/cloudflare')).default : null;
 
 export default defineConfig({
-  site: 'https://refuge-biollet.pages.dev',
+  site: 'https://site-refuge-biollet.pages.dev',
   output: isKeystatic ? 'hybrid' : 'static',
   adapter: isKeystatic ? cloudflare() : undefined,
   integrations: [
