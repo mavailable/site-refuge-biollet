@@ -1,0 +1,41 @@
+---
+/**
+ * Galerie — Grille masonry
+ * Fond : white
+ */
+const images = [
+  { src: '/images/accueil-principale.jpg', alt: 'Le Refuge, maison d\'hôtes en pierre dans la campagne des Combrailles', span: 'col-span-2 row-span-2' },
+  { src: '/images/restaurant.jpg', alt: 'Salle du restaurant Le Refuge avec tables dressées', span: '' },
+  { src: '/images/jardin.webp', alt: 'Jardin du Refuge avec potager en permaculture', span: '' },
+  { src: '/images/chaambre.webp', alt: 'Chambre d\'hôtes du Refuge avec décoration chaleureuse', span: '' },
+  { src: '/images/maison-neige.jpg', alt: 'Le Refuge sous la neige en hiver dans les Combrailles', span: '' },
+  { src: '/images/jardin2.webp', alt: 'Espace extérieur du Refuge avec vue sur la campagne', span: '' },
+  { src: '/images/chambre3.webp', alt: 'Chambre d\'hôtes Le Refuge, lit et linge de maison', span: '' },
+];
+---
+
+<section id="galerie" class="py-16 md:py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary-900 mb-4">
+        Le Refuge en images
+      </h2>
+      <p class="text-neutral-700 text-lg">
+        La maison, le jardin, nos plats — un aperçu de ce qui vous attend.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      {images.map((img) => (
+        <div class:list={['overflow-hidden rounded-lg', img.span]}>
+          <img
+            src={img.src}
+            alt={img.alt}
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

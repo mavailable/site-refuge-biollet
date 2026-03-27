@@ -1,0 +1,146 @@
+---
+import { business } from '@data/business';
+
+const navLinks = [
+  { label: 'Restaurant', href: '#restaurant' },
+  { label: 'Chambres', href: '#chambres' },
+  { label: 'Gîte', href: '#gite' },
+  { label: 'À propos', href: '#apropos' },
+  { label: 'Galerie', href: '#galerie' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header id="site-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Navigation principale">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <!-- Logo -->
+      <a href="/" class="flex-shrink-0" aria-label="Le Refuge — Accueil">
+        <img src="/images/logo-white.png" alt="Le Refuge" class="h-10 md:h-12 header-logo transition-opacity duration-300" width="120" height="48" />
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden lg:flex items-center gap-6">
+        {navLinks.map(link => (
+          <a href={link.href} class="nav-link text-sm font-medium transition-colors duration-200">
+            {link.label}
+          </a>
+        ))}
+        <a href="#contact" class="bg-accent-600 text-white text-sm font-semibold py-2.5 px-5 rounded hover:bg-accent-700 transition-colors min-h-[44px] flex items-center">
+          Je réserve
+        </a>
+      </div>
+
+      <!-- Mobile: phone + hamburger -->
+      <div class="flex items-center gap-3 lg:hidden">
+        <a href={`tel:${business.phone.replace(/\s/g, '')}`} class="nav-link p-2 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Appeler Le Refuge">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+          </svg>
+        </a>
+        <button id="menu-toggle" class="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg class="w-6 h-6 menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg class="w-6 h-6 close-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden pb-4">
+      <div class="flex flex-col gap-1 pt-2 border-t border-white/20">
+        {navLinks.map(link => (
+          <a href={link.href} class="mobile-nav-link block py-3 px-4 text-base font-medium rounded transition-colors">
+            {link.label}
+          </a>
+        ))}
+        <a href="#contact" class="mt-2 bg-accent-600 text-white text-center font-semibold py-3 px-6 rounded hover:bg-accent-700 transition-colors min-h-[44px]">
+          Je réserve
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Header scroll: transparent → solid
+  const header = document.getElementById('site-header')!;
+  const logo = header.querySelector('.header-logo') as HTMLImageElement;
+
+  function updateHeader() {
+    const scrolled = window.scrollY > 80;
+    header.classList.toggle('bg-white', scrolled);
+    header.classList.toggle('shadow-sm', scrolled);
+
+    // Swap logo
+    if (scrolled) {
+      logo.src = '/images/logo-vert.png';
+    } else {
+      logo.src = '/images/logo-white.png';
+    }
+
+    // Nav links color
+    header.querySelectorAll('.nav-link').forEach(link => {
+      link.classList.toggle('text-white', !scrolled);
+      link.classList.toggle('text-neutral-700', scrolled);
+      link.classList.toggle('hover:text-neutral-900', scrolled);
+      link.classList.toggle('hover:text-white/80', !scrolled);
+    });
+  }
+
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+
+  // Mobile menu toggle
+  const toggle = document.getElementById('menu-toggle')!;
+  const menu = document.getElementById('mobile-menu')!;
+  const menuIcon = toggle.querySelector('.menu-icon')!;
+  const closeIcon = toggle.querySelector('.close-icon')!;
+
+  toggle.addEventListener('click', () => {
+    const isOpen = !menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    menuIcon.classList.toggle('hidden');
+    closeIcon.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  // Close menu on link click
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      menuIcon.classList.remove('hidden');
+      closeIcon.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+      menu.classList.add('hidden');
+      menuIcon.classList.remove('hidden');
+      closeIcon.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
+    }
+  });
+</script>
+
+<style>
+  .mobile-nav-link {
+    color: white;
+  }
+  .mobile-nav-link:hover {
+    background: rgba(255,255,255,0.1);
+  }
+  #site-header.bg-white .mobile-nav-link {
+    color: var(--color-neutral-700);
+  }
+  #site-header.bg-white .mobile-nav-link:hover {
+    background: var(--color-primary-50);
+  }
+</style>

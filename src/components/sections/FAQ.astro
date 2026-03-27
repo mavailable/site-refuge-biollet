@@ -1,0 +1,54 @@
+---
+/**
+ * FAQ — Fond blanc, accordéon <details>
+ * Fond : white
+ * Inclut Schema.org FAQPage JSON-LD
+ */
+import { getCollection } from 'astro:content';
+import { business } from '@data/business';
+
+const faqEntries = (await getCollection('faq')).sort((a, b) => a.data.order - b.data.order);
+
+// Schema.org FAQPage
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqEntries.map(({ data }) => ({
+    "@type": "Question",
+    "name": data.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": data.answer,
+    },
+  })),
+};
+---
+
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary-900 mb-4">
+        Questions fréquentes sur Le Refuge
+      </h2>
+    </div>
+
+    <div class="space-y-3">
+      {faqEntries.map(({ data }, i) => (
+        <details class="group bg-neutral-50 rounded-lg" open={i === 0}>
+          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-neutral-800 hover:text-primary-700 transition-colors min-h-[44px] list-none">
+            <span>{data.question}</span>
+            <svg class="w-5 h-5 text-neutral-400 group-open:rotate-180 transition-transform duration-200 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-neutral-700 faq-answer leading-relaxed">
+            {data.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+
+  <!-- FAQPage Schema.org JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</section>

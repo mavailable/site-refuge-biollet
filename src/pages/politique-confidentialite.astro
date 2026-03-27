@@ -1,0 +1,120 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import { business } from '@data/business';
+---
+
+<BaseLayout
+  title="Politique de confidentialité — Le Refuge"
+  description="Politique de confidentialité et traitement des données personnelles du site Le Refuge."
+>
+  <Header slot="header" />
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+    <h1 class="font-heading text-3xl md:text-4xl font-bold text-primary-900 mb-8">Politique de confidentialité</h1>
+
+    <div class="prose prose-neutral max-w-none text-neutral-700 space-y-8">
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Responsable du traitement</h2>
+        <p>
+          {business.name}<br />
+          {business.address.street}, {business.address.zip} {business.address.city}, France<br />
+          Email : <a href={`mailto:${business.email}`} class="text-primary-700 hover:text-primary-900">{business.email}</a>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Données collectées</h2>
+        <p>Nous collectons uniquement les données que vous nous transmettez volontairement via le formulaire de contact :</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Nom</li>
+          <li>Adresse email</li>
+          <li>Numéro de téléphone (optionnel)</li>
+          <li>Type de demande</li>
+          <li>Dates souhaitées (optionnel)</li>
+          <li>Contenu de votre message</li>
+        </ul>
+        <p>Aucune donnée n'est collectée automatiquement lors de votre navigation sur le site.</p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Finalité du traitement</h2>
+        <p>Vos données sont utilisées exclusivement pour :</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Répondre à votre demande de contact ou de réservation</li>
+          <li>Vous recontacter si nécessaire dans le cadre de votre demande</li>
+        </ul>
+        <p>Vos données ne sont jamais utilisées à des fins commerciales, de prospection ou de profilage.</p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Base légale</h2>
+        <p>Le traitement de vos données repose sur votre consentement, exprimé par la soumission volontaire du formulaire de contact (article 6.1.a du RGPD).</p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Durée de conservation</h2>
+        <p>Vos données sont conservées pendant une durée maximale de 3 ans après votre dernier échange avec nous, puis supprimées. Vous pouvez demander leur suppression à tout moment.</p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Sous-traitants et services tiers</h2>
+
+        <h3 class="font-semibold text-neutral-800 mt-4">Web3Forms (traitement des formulaires)</h3>
+        <p>
+          Les données soumises via le formulaire de contact sont transmises à Web3Forms pour acheminement par email. Les données transitent par les États-Unis. La base légale de ce transfert est votre consentement lors de la soumission du formulaire.<br />
+          <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer" class="text-primary-700 hover:text-primary-900 underline">Politique de confidentialité Web3Forms</a>
+        </p>
+
+        <h3 class="font-semibold text-neutral-800 mt-4">Umami Cloud (analyse d'audience)</h3>
+        <p>
+          Nous utilisons Umami pour mesurer la fréquentation du site. Cet outil ne dépose aucun cookie sur votre appareil et ne collecte aucune donnée personnelle. Les données sont anonymisées et agrégées. Umami est conforme au RGPD par conception.
+        </p>
+
+        <h3 class="font-semibold text-neutral-800 mt-4">Cloudflare (hébergement et CDN)</h3>
+        <p>
+          Le site est hébergé par Cloudflare, Inc. (États-Unis). Cloudflare peut collecter des données techniques (adresse IP) à des fins de sécurité et de performance.<br />
+          <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" class="text-primary-700 hover:text-primary-900 underline">Politique de confidentialité Cloudflare</a>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Cookies</h2>
+        <p>Ce site ne dépose aucun cookie sur votre appareil. Aucun consentement n'est donc requis.</p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Vos droits</h2>
+        <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong>Droit d'accès</strong> : obtenir une copie de vos données personnelles</li>
+          <li><strong>Droit de rectification</strong> : corriger des données inexactes</li>
+          <li><strong>Droit de suppression</strong> : demander l'effacement de vos données</li>
+          <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré</li>
+          <li><strong>Droit de limitation</strong> : restreindre le traitement de vos données</li>
+          <li><strong>Droit d'opposition</strong> : vous opposer au traitement de vos données</li>
+        </ul>
+        <p>
+          Pour exercer ces droits, contactez-nous par email à <a href={`mailto:${business.email}`} class="text-primary-700 hover:text-primary-900 underline">{business.email}</a>. Nous nous engageons à répondre dans un délai de 30 jours.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Réclamation</h2>
+        <p>
+          Si vous estimez que le traitement de vos données ne respecte pas la réglementation en vigueur, vous pouvez adresser une réclamation à la CNIL (Commission Nationale de l'Informatique et des Libertés) :<br />
+          <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" class="text-primary-700 hover:text-primary-900 underline">www.cnil.fr</a>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Mise à jour</h2>
+        <p>Cette politique de confidentialité peut être mise à jour. La date de dernière modification est indiquée ci-dessous.</p>
+        <p class="text-sm text-neutral-500">Dernière mise à jour : mars 2026</p>
+      </section>
+    </div>
+  </article>
+
+  <Footer slot="footer" />
+</BaseLayout>

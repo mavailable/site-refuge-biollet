@@ -1,0 +1,87 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import { business, legal } from '@data/business';
+---
+
+<BaseLayout
+  title="Mentions légales — Le Refuge"
+  description="Mentions légales du site Le Refuge, restaurant et maison d'hôtes à Biollet (63640)."
+>
+  <Header slot="header" />
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+    <h1 class="font-heading text-3xl md:text-4xl font-bold text-primary-900 mb-8">Mentions légales</h1>
+
+    <div class="prose prose-neutral max-w-none text-neutral-700 space-y-8">
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Éditeur du site</h2>
+        <p>
+          {business.name}<br />
+          {business.address.street}<br />
+          {business.address.zip} {business.address.city}, France
+        </p>
+        <p>
+          Téléphone : <a href={`tel:${business.phone.replace(/\s/g, '')}`} class="text-primary-700 hover:text-primary-900">{business.phone}</a><br />
+          Email : <a href={`mailto:${business.email}`} class="text-primary-700 hover:text-primary-900">{business.email}</a>
+        </p>
+        <p>
+          SIRET : {legal.registrationNumber || 'En cours d\'obtention'}<br />
+          Directeur de la publication : Manon & François
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Hébergeur</h2>
+        <p>
+          Cloudflare, Inc.<br />
+          101 Townsend St, San Francisco, CA 94107, États-Unis<br />
+          Téléphone : +1 (650) 319-8930<br />
+          Site : <a href="https://www.cloudflare.com" target="_blank" rel="noopener noreferrer" class="text-primary-700 hover:text-primary-900">www.cloudflare.com</a>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Propriété intellectuelle</h2>
+        <p>
+          L'ensemble du contenu de ce site (textes, images, vidéos, logos, mise en page) est protégé par le droit d'auteur. Toute reproduction, représentation ou diffusion, même partielle, est interdite sans autorisation préalable écrite de l'éditeur.
+        </p>
+        <p>
+          Les photographies présentes sur ce site sont la propriété de Le Refuge ou sont utilisées avec l'autorisation de leurs auteurs.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Données personnelles</h2>
+        <p>
+          Pour toute information relative au traitement de vos données personnelles, consultez notre <a href="/politique-confidentialite" class="text-primary-700 hover:text-primary-900 underline">politique de confidentialité</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Cookies</h2>
+        <p>
+          Ce site ne dépose aucun cookie sur votre appareil. Notre outil d'analyse d'audience (Umami) fonctionne sans cookies et ne collecte aucune donnée personnelle.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Conception du site</h2>
+        <p>
+          Site conçu par <a href="https://www.marcm.fr/" target="_blank" rel="noopener noreferrer" class="text-primary-700 hover:text-primary-900">Marc Muller — marcm.fr</a><br />
+          Contact webmaster : <a href="mailto:marc@muller.im" class="text-primary-700 hover:text-primary-900">marc@muller.im</a>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold text-primary-900">Droit applicable</h2>
+        <p>
+          Le présent site est soumis au droit français. En cas de litige, les tribunaux français seront seuls compétents.
+        </p>
+      </section>
+    </div>
+  </article>
+
+  <Footer slot="footer" />
+</BaseLayout>

@@ -1,0 +1,118 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import Hero from '@components/sections/Hero.astro';
+import Restaurant from '@components/sections/Restaurant.astro';
+import Chambres from '@components/sections/Chambres.astro';
+import Gite from '@components/sections/Gite.astro';
+import About from '@components/sections/About.astro';
+import Gallery from '@components/sections/Gallery.astro';
+import Testimonials from '@components/sections/Testimonials.astro';
+import FAQ from '@components/sections/FAQ.astro';
+import Contact from '@components/sections/Contact.astro';
+import { business } from '@data/business';
+
+// Schema.org principal
+const restaurantSchema = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Le Refuge — Restaurant",
+  "image": `${business.siteUrl}/images/og-image.jpg`,
+  "description": "Restaurant de produits locaux à Biollet (63640), au cœur des Combrailles. Cuisine de marché faite maison à partir du potager en permaculture et des producteurs locaux.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": business.address.street,
+    "addressLocality": business.address.city,
+    "postalCode": business.address.zip,
+    "addressRegion": business.address.region,
+    "addressCountry": business.address.country,
+  },
+  "telephone": business.phone.replace(/\s/g, ''),
+  "email": business.email,
+  "url": business.siteUrl,
+  "servesCuisine": "Cuisine française de marché, produits locaux",
+  "priceRange": "€€",
+  "geo": { "@type": "GeoCoordinates", "latitude": "46.0120524", "longitude": "2.6964998" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "114", "bestRating": "5" },
+  "sameAs": [business.socials.facebook, business.socials.instagram],
+};
+
+const lodgingSchema = {
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "Le Refuge — Maison d'hôtes & Gîte",
+  "image": `${business.siteUrl}/images/og-image.jpg`,
+  "description": "Maison d'hôtes et gîte à Biollet (63640). 3 chambres dès 54€/nuit avec petit déjeuner inclus et un gîte pour 2-4 personnes.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": business.address.street,
+    "addressLocality": business.address.city,
+    "postalCode": business.address.zip,
+    "addressCountry": business.address.country,
+  },
+  "telephone": business.phone2!.replace(/\s/g, ''),
+  "email": business.email,
+  "url": business.siteUrl,
+  "petsAllowed": true,
+  "numberOfRooms": 4,
+  "geo": { "@type": "GeoCoordinates", "latitude": "46.0120524", "longitude": "2.6964998" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "114", "bestRating": "5" },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": business.name,
+  "url": business.siteUrl,
+  "description": "Restaurant de produits locaux, chambres d'hôtes et gîte à Biollet (63640).",
+  "inLanguage": "fr",
+};
+
+const speakableSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Le Refuge — Restaurant & Maison d'hôtes à Biollet",
+  "url": business.siteUrl,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", ".intro-text", ".faq-answer"],
+  },
+};
+---
+
+<BaseLayout
+  title="Le Refuge — Restaurant & Maison d'hôtes à Biollet | Combrailles, Auvergne"
+  description="Restaurant de produits locaux, chambres d'hôtes et gîte à Biollet (63640). Cuisine du jardin, cadre nature, 3 chambres dès 54€/nuit. Réservation obligatoire."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(restaurantSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(lodgingSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(speakableSchema)} />
+  </Fragment>
+
+  <Header slot="header" />
+
+  <Hero />
+  <Restaurant />
+  <Chambres />
+  <Gite />
+  <About />
+  <Gallery />
+  <Testimonials />
+  <FAQ />
+  <Contact />
+
+  <!-- Sticky CTA mobile -->
+  <div class="fixed bottom-0 left-0 right-0 z-30 md:hidden bg-primary-900 border-t border-primary-800 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
+    <a href="#contact" class="flex items-center justify-center gap-2 bg-accent-600 text-white font-semibold py-3 px-6 rounded hover:bg-accent-700 transition-colors min-h-[44px] w-full">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+      </svg>
+      Je réserve
+    </a>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
