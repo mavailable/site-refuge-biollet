@@ -12,73 +12,22 @@ import Testimonials from '@components/sections/Testimonials.astro';
 import FAQ from '@components/sections/FAQ.astro';
 import Contact from '@components/sections/Contact.astro';
 import { business } from '@data/business';
+import {
+  getRestaurantSchema,
+  getLodgingBusinessSchema,
+  getWebsiteSchema,
+  getBreadcrumbSchema,
+  getSpeakableSchema,
+} from '@data/schemas';
 
-// Schema.org principal
-const restaurantSchema = {
-  "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "name": "Le Refuge — Restaurant",
-  "image": `${business.siteUrl}/images/og-image.jpg`,
-  "description": "Restaurant de produits locaux à Biollet (63640), au cœur des Combrailles. Cuisine de marché faite maison à partir du potager en permaculture et des producteurs locaux.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": business.address.street,
-    "addressLocality": business.address.city,
-    "postalCode": business.address.zip,
-    "addressRegion": business.address.region,
-    "addressCountry": business.address.country,
-  },
-  "telephone": business.phone.replace(/\s/g, ''),
-  "email": business.email,
-  "url": business.siteUrl,
-  "servesCuisine": "Cuisine française de marché, produits locaux",
-  "priceRange": "€€",
-  "geo": { "@type": "GeoCoordinates", "latitude": "46.0120524", "longitude": "2.6964998" },
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "114", "bestRating": "5" },
-  "sameAs": [business.socials.facebook, business.socials.instagram],
-};
-
-const lodgingSchema = {
-  "@context": "https://schema.org",
-  "@type": "LodgingBusiness",
-  "name": "Le Refuge — Maison d'hôtes & Gîte",
-  "image": `${business.siteUrl}/images/og-image.jpg`,
-  "description": "Maison d'hôtes et gîte à Biollet (63640). 3 chambres dès 54€/nuit avec petit déjeuner inclus et un gîte pour 2-4 personnes.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": business.address.street,
-    "addressLocality": business.address.city,
-    "postalCode": business.address.zip,
-    "addressCountry": business.address.country,
-  },
-  "telephone": business.phone2!.replace(/\s/g, ''),
-  "email": business.email,
-  "url": business.siteUrl,
-  "petsAllowed": true,
-  "numberOfRooms": 4,
-  "geo": { "@type": "GeoCoordinates", "latitude": "46.0120524", "longitude": "2.6964998" },
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "114", "bestRating": "5" },
-};
-
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": business.name,
-  "url": business.siteUrl,
-  "description": "Restaurant de produits locaux, chambres d'hôtes et gîte à Biollet (63640).",
-  "inLanguage": "fr",
-};
-
-const speakableSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Le Refuge — Restaurant & Maison d'hôtes à Biollet",
-  "url": business.siteUrl,
-  "speakable": {
-    "@type": "SpeakableSpecification",
-    "cssSelector": ["h1", ".intro-text", ".faq-answer"],
-  },
-};
+// Schemas centralises — doctrine C1 wf-00-cms §7
+const restaurantSchema = getRestaurantSchema();
+const lodgingSchema = getLodgingBusinessSchema();
+const websiteSchema = getWebsiteSchema();
+const breadcrumbSchema = getBreadcrumbSchema([
+  { name: 'Accueil', url: business.siteUrl },
+]);
+const speakableSchema = getSpeakableSchema();
 ---
 
 <BaseLayout
@@ -89,6 +38,7 @@ const speakableSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(restaurantSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(lodgingSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(speakableSchema)} />
   </Fragment>
 

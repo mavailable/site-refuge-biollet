@@ -2,26 +2,15 @@
 /**
  * FAQ — Fond blanc, accordéon <details>
  * Fond : white
- * Inclut Schema.org FAQPage JSON-LD
+ * Inclut Schema.org FAQPage JSON-LD via helper centralise (doctrine C1)
  */
 import { getCollection } from 'astro:content';
-import { business } from '@data/business';
+import { getFAQPageSchema } from '@data/schemas';
 
 const faqEntries = (await getCollection('faq')).sort((a, b) => a.data.order - b.data.order);
 
-// Schema.org FAQPage
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqEntries.map(({ data }) => ({
-    "@type": "Question",
-    "name": data.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": data.answer,
-    },
-  })),
-};
+// Schema.org FAQPage centralise — doctrine C1
+const faqSchema = await getFAQPageSchema();
 ---
 
 <section class="py-16 md:py-24 bg-white">
@@ -50,5 +39,5 @@ const faqSchema = {
   </div>
 
   <!-- FAQPage Schema.org JSON-LD -->
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 </section>

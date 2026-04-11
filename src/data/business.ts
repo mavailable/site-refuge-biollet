@@ -33,4 +33,40 @@ export const business = {
     instagram: 'https://www.instagram.com/le_refuge_63/',
     googleMaps: 'https://www.google.com/maps/place/Le+refuge',
   },
+  // Doctrine C1 — source verifiable via `platform` (Google Business Profile)
+  rating: {
+    value: '4.9',
+    count: 114,
+    platform: 'Google',
+  },
+} as const;
+
+// ============================================================
+// Data SEO technique (non editable par le client — doctrine wf-00-cms §7)
+// Extrait du pages/index.astro pre-C1 pour centralisation dans schemas.ts.
+// Refuge-biollet est un business hybride : Restaurant + LodgingBusiness
+// (maison d'hotes + gite). Deux schemas complementaires pour la meme entite.
+// ============================================================
+
+export const schemaData = {
+  // Restaurant
+  restaurantName: 'Le Refuge — Restaurant',
+  restaurantDescription:
+    'Restaurant de produits locaux à Biollet (63640), au cœur des Combrailles. Cuisine de marché faite maison à partir du potager en permaculture et des producteurs locaux.',
+  restaurantServesCuisine: 'Cuisine française de marché, produits locaux',
+  restaurantPriceRange: '€€',
+
+  // LodgingBusiness
+  lodgingName: "Le Refuge — Maison d'hôtes & Gîte",
+  lodgingDescription:
+    "Maison d'hôtes et gîte à Biollet (63640). 3 chambres dès 54€/nuit avec petit déjeuner inclus et un gîte pour 2-4 personnes.",
+  lodgingPetsAllowed: true,
+  lodgingNumberOfRooms: 4,
+
+  // WebSite
+  websiteDescription:
+    "Restaurant de produits locaux, chambres d'hôtes et gîte à Biollet (63640).",
+
+  // Speakable (name hardcode preserve — different du title prop)
+  speakableName: "Le Refuge — Restaurant & Maison d'hôtes à Biollet",
 } as const;
