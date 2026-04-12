@@ -28,7 +28,7 @@ const meta = getTestimonialsMeta();
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {testimonials.map(({ data }) => (
+      {testimonials.map(({ id, data }) => (
         <article class="bg-white rounded-lg p-6 shadow-sm">
           <!-- Stars -->
           <div class="flex gap-1 mb-3" aria-label={`${data.rating} étoiles sur 5`}>
@@ -38,12 +38,12 @@ const meta = getTestimonialsMeta();
               </svg>
             ))}
           </div>
-          <blockquote class="faq-answer text-neutral-700 italic mb-4 leading-relaxed">
+          <blockquote class="faq-answer text-neutral-700 italic mb-4 leading-relaxed" data-cms-field={`testimonials.${id}.quote`} data-cms-type="text">
             "{data.quote}"
           </blockquote>
           <footer class="text-sm">
-            <span class="font-semibold text-neutral-800">{data.author}</span>
-            <span class="text-neutral-500"> · {data.context} ({data.source})</span>
+            <span class="font-semibold text-neutral-800" data-cms-field={`testimonials.${id}.author`} data-cms-type="text">{data.author}</span>
+            <span class="text-neutral-500"> · <span data-cms-field={`testimonials.${id}.context`} data-cms-type="text">{data.context}</span> ({data.source})</span>
           </footer>
         </article>
       ))}
