@@ -14,15 +14,15 @@ const g = getGite();
     <div class="md:flex md:items-center md:gap-12">
       <!-- Image -->
       <div class="md:w-1/2 mb-8 md:mb-0">
-        <img src={g.image} alt={g.imageAlt} class="w-full h-72 md:h-96 object-cover rounded-lg" loading="lazy" />
+        <img src={g.image} alt={g.imageAlt} class="w-full h-72 md:h-96 object-cover rounded-lg" loading="lazy" data-cms-field="gite.image" data-cms-type="image" />
       </div>
 
       <!-- Content -->
       <div class="md:w-1/2">
-        <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary-900 mb-4">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary-900 mb-4" data-cms-field="gite.title" data-cms-type="text">
           {g.title}
         </h2>
-        <p class="text-neutral-700 text-lg leading-relaxed mb-6">
+        <p class="text-neutral-700 text-lg leading-relaxed mb-6" data-cms-field="gite.description" data-cms-type="richtext">
           {g.description}
         </p>
 

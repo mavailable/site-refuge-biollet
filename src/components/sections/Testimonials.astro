@@ -11,10 +11,10 @@ const testimonials = await getCollection('testimonials');
 const meta = getTestimonialsMeta();
 ---
 
-<section class="py-16 md:py-24 bg-secondary-50">
+<section class="py-16 md:py-24 bg-secondary-50" data-cms-field="testimonials" data-cms-type="collection">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
-      <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary-900 mb-4">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary-900 mb-4" data-cms-field="testimonials-meta.title" data-cms-type="text">
         {meta.title}
       </h2>
       <div class="flex flex-wrap justify-center gap-6 md:gap-10 mt-6">

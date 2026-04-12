@@ -13,10 +13,10 @@ const bgColors = ['bg-primary-50', 'bg-secondary-50', 'bg-primary-50'];
 <section id="chambres" class="py-16 md:py-24 bg-white">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
-      <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary-900 mb-4">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary-900 mb-4" data-cms-field="chambres.title" data-cms-type="text">
         {ch.title}
       </h2>
-      <p class="text-neutral-700 max-w-2xl mx-auto text-lg">
+      <p class="text-neutral-700 max-w-2xl mx-auto text-lg" data-cms-field="chambres.subtitle" data-cms-type="text">
         {ch.subtitle}
       </p>
     </div>
@@ -42,8 +42,8 @@ const bgColors = ['bg-primary-50', 'bg-secondary-50', 'bg-primary-50'];
     </div>
 
     <div class="mt-8 text-center text-sm text-neutral-600">
-      <p>{ch.frais}</p>
-      <p class="mt-1 font-medium text-primary-700">{ch.groupe}</p>
+      <p data-cms-field="chambres.frais" data-cms-type="text">{ch.frais}</p>
+      <p class="mt-1 font-medium text-primary-700" data-cms-field="chambres.groupe" data-cms-type="text">{ch.groupe}</p>
     </div>
   </div>
 </section>
