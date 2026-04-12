@@ -80,7 +80,7 @@ const ogImageURL = new URL(ogImage, Astro.site).href;
     <!-- CMS inline editing (visible uniquement pour les admins connectes) -->
     <script>
       // cms_logged_in : charge le script d'edition visuelle si cookie CMS present
-      if (document.cookie.includes('cms_session=')) {
+      if (document.cookie.includes('cms_logged_in')) {
         const s = document.createElement('script');
         s.src = '/cms-edit.js';
         s.defer = true;
