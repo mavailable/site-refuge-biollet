@@ -1,0 +1,12 @@
+{
+  "colors": {
+    "primary": "#4E8A3A",
+    "accent": "#D4940A",
+    "dark": "#1A3310"
+  },
+  "pageNames": {
+    "/": "Accueil",
+    "/mentions-legales": "Mentions legales",
+    "/politique-confidentialite": "Politique de confidentialite"
+  }
+}

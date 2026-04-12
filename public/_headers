@@ -11,6 +11,10 @@
 /favicon.svg
   Cache-Control: public, max-age=86400
 
-/aide-c682821b/*
-  ! X-Frame-Options
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' https: blob:; font-src 'self'; connect-src 'self' https://cloud.umami.is https://api-gateway.umami.dev; frame-src https://cloud.umami.is; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+/admin
+  X-Frame-Options: SAMEORIGIN
+
+/api/cms/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Authorization

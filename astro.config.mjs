@@ -1,30 +1,23 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
-
-const isKeystatic = process.env.KEYSTATIC === 'true';
-
-const keystatic = isKeystatic ? (await import('@keystatic/astro')).default : null;
-const react = isKeystatic ? (await import('@astrojs/react')).default : null;
-const cloudflare = isKeystatic ? (await import('@astrojs/cloudflare')).default : null;
+import react from '@astrojs/react';
 
 export default defineConfig({
   site: 'https://site-refuge-biollet.pages.dev',
-  output: isKeystatic ? 'hybrid' : 'static',
-  adapter: isKeystatic ? cloudflare() : undefined,
+  output: 'static',
   integrations: [
     sitemap({
       filter: (page) =>
         !page.includes('/merci') &&
         !page.includes('/404') &&
-        !page.includes('/aide-'),
+        !page.includes('/admin'),
       i18n: {
         defaultLocale: 'fr',
         locales: { fr: 'fr-FR' },
       },
     }),
-    ...(isKeystatic && react ? [react()] : []),
-    ...(isKeystatic && keystatic ? [keystatic()] : []),
+    react(),
   ],
   compressHTML: true,
   build: { inlineStylesheets: 'auto' },
