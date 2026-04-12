@@ -1,8 +1,12 @@
 ---
 /**
- * Gîte — Image gauche + texte droite
+ * Gite — Image gauche + texte droite
  * Fond : neutral-50
+ * Contenu lu depuis src/content/gite/index.json
  */
+import { getGite } from '@data/content';
+
+const g = getGite();
 ---
 
 <section id="gite" class="py-16 md:py-24 bg-neutral-50">
@@ -10,35 +14,34 @@
     <div class="md:flex md:items-center md:gap-12">
       <!-- Image -->
       <div class="md:w-1/2 mb-8 md:mb-0">
-        <img src="/images/gite-exterieur.jpg" alt="Vue extérieure du Refuge avec jardin, terrasse et verdure" class="w-full h-72 md:h-96 object-cover rounded-lg" loading="lazy" />
+        <img src={g.image} alt={g.imageAlt} class="w-full h-72 md:h-96 object-cover rounded-lg" loading="lazy" />
       </div>
 
       <!-- Content -->
       <div class="md:w-1/2">
         <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary-900 mb-4">
-          Le gîte — votre appartement sous les toits
+          {g.title}
         </h2>
         <p class="text-neutral-700 text-lg leading-relaxed mb-6">
-          Appartement entièrement rénové sous les combles, pour 2 à 4 personnes. Cuisine toute équipée, chambre tout confort, salle de bain avec douche à l'italienne. Depuis la fenêtre, la campagne et la chaîne des Puys. Linge de maison fourni sur demande. Idéal pour un long week-end ou des vacances en famille.
+          {g.description}
         </p>
 
         <!-- Tarifs -->
         <div class="bg-white rounded-lg p-5 shadow-sm mb-6">
           <div class="flex items-baseline gap-3 mb-3">
-            <span class="text-3xl font-bold text-accent-600">82,50 €</span>
-            <span class="text-neutral-600">/nuit (min. 2 nuits)</span>
+            <span class="text-3xl font-bold text-accent-600">{g.priceNight}</span>
+            <span class="text-neutral-600">{g.priceNightNote}</span>
           </div>
           <ul class="text-sm text-neutral-700 space-y-1">
-            <li>462 € la semaine</li>
-            <li>Petit déjeuner en option : 7 €/pers./jour</li>
-            <li>Canapé convertible : +15 €/nuit</li>
-            <li>Ménage : 15 € + taxe de séjour 0,80 €/pers./nuit</li>
-            <li class="text-primary-700 font-medium">Animaux bienvenus : 10 € pour le séjour</li>
+            {g.priceDetails.map((detail) => (
+              <li>{detail}</li>
+            ))}
+            <li class="text-primary-700 font-medium">{g.petsNote}</li>
           </ul>
         </div>
 
         <a href="#contact" class="inline-flex items-center justify-center bg-accent-600 text-white font-semibold py-3 px-8 rounded hover:bg-accent-700 transition-colors min-h-[44px]">
-          Réserver le gîte
+          {g.ctaText}
         </a>
       </div>
     </div>

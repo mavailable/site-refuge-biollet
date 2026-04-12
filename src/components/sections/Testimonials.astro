@@ -1,36 +1,29 @@
 ---
 /**
- * Témoignages — Fond crème, cards citations
+ * Temoignages — Fond creme, cards citations
  * Fond : secondary-50
+ * Contenu lu depuis src/content/testimonials/ (collection) + testimonials-meta (singleton)
  */
 import { getCollection } from 'astro:content';
+import { getTestimonialsMeta } from '@data/content';
 
 const testimonials = await getCollection('testimonials');
+const meta = getTestimonialsMeta();
 ---
 
 <section class="py-16 md:py-24 bg-secondary-50">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
       <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary-900 mb-4">
-        Ce qu'en disent nos hôtes
+        {meta.title}
       </h2>
       <div class="flex flex-wrap justify-center gap-6 md:gap-10 mt-6">
-        <div class="text-center">
-          <span class="block text-3xl font-bold text-accent-600">4.9/5</span>
-          <span class="text-sm text-neutral-600">Google — 114 avis</span>
-        </div>
-        <div class="text-center">
-          <span class="block text-3xl font-bold text-accent-600">5/5</span>
-          <span class="text-sm text-neutral-600">TripAdvisor</span>
-        </div>
-        <div class="text-center">
-          <span class="block text-3xl font-bold text-accent-600">10</span>
-          <span class="text-sm text-neutral-600">personnes max</span>
-        </div>
-        <div class="text-center">
-          <span class="block text-3xl font-bold text-accent-600">2022</span>
-          <span class="text-sm text-neutral-600">ouverture</span>
-        </div>
+        {meta.stats.map((stat) => (
+          <div class="text-center">
+            <span class="block text-3xl font-bold text-accent-600">{stat.value}</span>
+            <span class="text-sm text-neutral-600">{stat.label}</span>
+          </div>
+        ))}
       </div>
     </div>
 

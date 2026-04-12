@@ -1,0 +1,32 @@
+{
+  "title": "Trois chambres, trois ambiances",
+  "subtitle": "Chaque chambre du Refuge a sa personnalité. Petit déjeuner inclus, salle de bain privative, et le calme des Combrailles en prime.",
+  "rooms": [
+    {
+      "name": "Suite Bonsai",
+      "description": "Suite spacieuse au rez-de-chaussée avec salle de bain privative, sauna et poêle à bois. Un petit frigo et une vue sur le jardin depuis deux versants. La chambre la plus confortable pour un séjour long.",
+      "priceNight": "66 €/nuit",
+      "priceWeek": "370 € la semaine · Petit déjeuner inclus",
+      "image": "/images/chaambre.webp",
+      "imageAlt": "Suite Bonsai — chambre spacieuse avec murs en pierre et parquet"
+    },
+    {
+      "name": "Chambre Capucine",
+      "description": "Au premier étage, couleurs chaudes et décoration florale rustique. Salle de bain spacieuse avec douche à l'italienne. Idéale pour un week-end en couple.",
+      "priceNight": "66 €/nuit",
+      "priceWeek": "370 € la semaine · Petit déjeuner inclus",
+      "image": "/images/chambre3.webp",
+      "imageAlt": "Chambre Capucine — décoration chaleureuse, murs en pierre, lit en bois"
+    },
+    {
+      "name": "Chambre Orchidée",
+      "description": "Chambre petits budgets pour séjours courts et voyageurs de passage. Salle de bain privative non attenante. Minimum 2 nuits.",
+      "priceNight": "54 €/nuit",
+      "priceWeek": "302 € la semaine · Petit déjeuner inclus",
+      "image": "/images/jardin2.webp",
+      "imageAlt": "Le Refuge — vue extérieure sur la campagne"
+    }
+  ],
+  "frais": "Frais : 10 € ménage + 0,80 € taxe de séjour/pers./nuit",
+  "groupe": "Groupe : louez les trois chambres et le gîte (jusqu'à 10 personnes) — réduction de 15 %"
+}

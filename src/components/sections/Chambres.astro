@@ -1,78 +1,49 @@
 ---
 /**
- * Chambres d'hôtes — Fond blanc, cards horizontales
+ * Chambres d'hotes — Fond blanc, cards horizontales
  * Fond : white
+ * Contenu lu depuis src/content/chambres/index.json
  */
+import { getChambres } from '@data/content';
+
+const ch = getChambres();
+const bgColors = ['bg-primary-50', 'bg-secondary-50', 'bg-primary-50'];
 ---
 
 <section id="chambres" class="py-16 md:py-24 bg-white">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
       <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary-900 mb-4">
-        Trois chambres, trois ambiances
+        {ch.title}
       </h2>
       <p class="text-neutral-700 max-w-2xl mx-auto text-lg">
-        Chaque chambre du Refuge a sa personnalité. Petit déjeuner inclus, salle de bain privative, et le calme des Combrailles en prime.
+        {ch.subtitle}
       </p>
     </div>
 
     <div class="space-y-6">
-      <!-- Suite Bonsai -->
-      <article class="bg-primary-50 rounded-lg overflow-hidden md:flex">
-        <div class="md:w-2/5 h-56 md:h-auto">
-          <img src="/images/chaambre.webp" alt="Suite Bonsai — chambre spacieuse avec murs en pierre et parquet" class="w-full h-full object-cover" loading="lazy" />
-        </div>
-        <div class="p-6 md:p-8 md:w-3/5 flex flex-col justify-center">
-          <h3 class="font-heading text-2xl font-semibold text-primary-900 mb-2">Suite Bonsai</h3>
-          <p class="text-neutral-700 mb-4">
-            Suite spacieuse au rez-de-chaussée avec salle de bain privative, sauna et poêle à bois. Un petit frigo et une vue sur le jardin depuis deux versants. La chambre la plus confortable pour un séjour long.
-          </p>
-          <div class="flex flex-wrap items-center gap-3">
-            <span class="bg-accent-600 text-white font-bold py-1.5 px-4 rounded text-sm">66 €/nuit</span>
-            <span class="text-neutral-600 text-sm">370 € la semaine · Petit déjeuner inclus</span>
+      {ch.rooms.map((room, i) => (
+        <article class:list={[bgColors[i] || 'bg-primary-50', 'rounded-lg overflow-hidden md:flex', i % 2 === 1 ? 'md:flex-row-reverse' : '']}>
+          <div class="md:w-2/5 h-56 md:h-auto">
+            <img src={room.image} alt={room.imageAlt} class="w-full h-full object-cover" loading="lazy" />
           </div>
-        </div>
-      </article>
-
-      <!-- Chambre Capucine -->
-      <article class="bg-secondary-50 rounded-lg overflow-hidden md:flex md:flex-row-reverse">
-        <div class="md:w-2/5 h-56 md:h-auto">
-          <img src="/images/chambre3.webp" alt="Chambre Capucine — décoration chaleureuse, murs en pierre, lit en bois" class="w-full h-full object-cover" loading="lazy" />
-        </div>
-        <div class="p-6 md:p-8 md:w-3/5 flex flex-col justify-center">
-          <h3 class="font-heading text-2xl font-semibold text-primary-900 mb-2">Chambre Capucine</h3>
-          <p class="text-neutral-700 mb-4">
-            Au premier étage, couleurs chaudes et décoration florale rustique. Salle de bain spacieuse avec douche à l'italienne. Idéale pour un week-end en couple.
-          </p>
-          <div class="flex flex-wrap items-center gap-3">
-            <span class="bg-accent-600 text-white font-bold py-1.5 px-4 rounded text-sm">66 €/nuit</span>
-            <span class="text-neutral-600 text-sm">370 € la semaine · Petit déjeuner inclus</span>
+          <div class="p-6 md:p-8 md:w-3/5 flex flex-col justify-center">
+            <h3 class="font-heading text-2xl font-semibold text-primary-900 mb-2">{room.name}</h3>
+            <p class="text-neutral-700 mb-4">
+              {room.description}
+            </p>
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="bg-accent-600 text-white font-bold py-1.5 px-4 rounded text-sm">{room.priceNight}</span>
+              <span class="text-neutral-600 text-sm">{room.priceWeek}</span>
+            </div>
           </div>
-        </div>
-      </article>
-
-      <!-- Chambre Orchidée -->
-      <article class="bg-primary-50 rounded-lg overflow-hidden md:flex">
-        <div class="md:w-2/5 h-56 md:h-auto">
-          <!-- Photo Orchidée non disponible — vue extérieure en attendant -->
-          <img src="/images/jardin2.webp" alt="Le Refuge — vue extérieure sur la campagne" class="w-full h-full object-cover" loading="lazy" />
-        </div>
-        <div class="p-6 md:p-8 md:w-3/5 flex flex-col justify-center">
-          <h3 class="font-heading text-2xl font-semibold text-primary-900 mb-2">Chambre Orchidée</h3>
-          <p class="text-neutral-700 mb-4">
-            Chambre petits budgets pour séjours courts et voyageurs de passage. Salle de bain privative non attenante. Minimum 2 nuits.
-          </p>
-          <div class="flex flex-wrap items-center gap-3">
-            <span class="bg-accent-600 text-white font-bold py-1.5 px-4 rounded text-sm">54 €/nuit</span>
-            <span class="text-neutral-600 text-sm">302 € la semaine · Petit déjeuner inclus</span>
-          </div>
-        </div>
-      </article>
+        </article>
+      ))}
     </div>
 
     <div class="mt-8 text-center text-sm text-neutral-600">
-      <p>Frais : 10 € ménage + 0,80 € taxe de séjour/pers./nuit</p>
-      <p class="mt-1 font-medium text-primary-700">Groupe : louez les trois chambres et le gîte (jusqu'à 10 personnes) — réduction de 15 %</p>
+      <p>{ch.frais}</p>
+      <p class="mt-1 font-medium text-primary-700">{ch.groupe}</p>
     </div>
   </div>
 </section>

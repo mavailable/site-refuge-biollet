@@ -1,0 +1,47 @@
+{
+  "title": "Une cuisine de marché, des produits d'ici",
+  "subtitle": "Au Refuge, la carte change au fil des saisons. Manon prépare chaque plat à partir des légumes du potager en permaculture et des produits de nos voisins producteurs. Carte courte, tout est fait maison.",
+  "entrees": [
+    { "name": "Fricassée d'escargots à la crème de Cantal et toast à l'ail", "price": "7,50 €" },
+    { "name": "Croquetas au jambon d'Auvergne, salade de jeunes pousses", "price": "7,50 €" },
+    { "name": "Foie gras de canard au Cognac et chutney de prune rouge du jardin", "price": "12 €" },
+    { "name": "Soupe du moment", "price": "7,50 €" }
+  ],
+  "plats": [
+    { "name": "Poitrine de porc des Combrailles confite au miel", "price": "22 €" },
+    { "name": "Rognon de veau au porto et à la moutarde violette", "price": "22 €" },
+    { "name": "Poule au pot au safran et son feuilleté comme un vol au vent", "price": "25 €" },
+    { "name": "Truite entière et son beurre aux câpres", "price": "25 €" },
+    { "name": "Le végétarien", "price": "22 €" }
+  ],
+  "dessertsTitle": "Desserts — 7 €",
+  "desserts": [
+    "Cheesecake à la pistache",
+    "Mousse au chocolat à la fève de Tonka et amandes caramélisées",
+    "Riz au lait à la vanille et pommes rôties",
+    "Assiette de fromages locaux"
+  ],
+  "menus": [
+    { "name": "Menu \"Du marché\"", "price": "32 €", "description": "Entrée + plat + dessert ou fromages" },
+    { "name": "Menu \"Le Refuge\"", "price": "48 €", "description": "Foie gras + vol au vent ou truite + fromages + dessert" },
+    { "name": "Menu enfant", "price": "14 €", "description": "Jusqu'à 12 ans" }
+  ],
+  "producteursTitle": "Chaque produit a un visage",
+  "producteursSubtitle": "Voici ceux qui font vivre notre cuisine.",
+  "producteursEnCuisine": [
+    "GAEC Chaffraix, Biollet — pommes de terre",
+    "Les jardins de Saint-Maigner & Le moulin de la Hire, Miremont — légumes et aromates",
+    "Boucherie de Pionsat — viandes",
+    "La grange gourmande, Pionsat — champignons bio",
+    "Pêcherie des Combrailles, Pontaumur — truites"
+  ],
+  "producteursAuBar": [
+    "Brasserie des Sagnes, Menat",
+    "Brasserie du Valhalla, Pontaumur",
+    "Brasserie des montagnes, Gelles",
+    "Tisanes en fleurs, Espinasse"
+  ],
+  "horaires": "Mer–Ven 19h–21h · Sam 12h–13h30 / 19h–21h · Bar Mer–Sam 18h–21h",
+  "note": "Réservation obligatoire · Planches charcuteries et fromages pour nos hôtes hors horaires",
+  "ctaText": "Je réserve ma table"
+}

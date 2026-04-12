@@ -2,6 +2,11 @@
   "title": "Restaurant et maison d'hôtes au cœur des Combrailles",
   "subtitle": "Cuisine de marché, chambres d'hôtes et gîte à Biollet (63640). Manon cuisine les produits du jardin et des producteurs locaux. François vous accueille dans un cadre de nature et de calme.",
   "ctaPrimary": "Je réserve ma table",
+  "ctaPrimaryHref": "#contact",
   "ctaSecondary": "Voir nos chambres",
-  "reassurance": "Réservation obligatoire · 06 33 49 20 78 · Ouvert du mercredi au samedi"
+  "ctaSecondaryHref": "#chambres",
+  "reassurance": "Réservation obligatoire · 06 33 49 20 78 · Ouvert du mercredi au samedi",
+  "badgeText": "4.9/5 — 114 avis Google",
+  "image": "/images/accueil-principale.jpg",
+  "imageAlt": "Le Refuge, maison d'hôtes en pierre dans la campagne des Combrailles"
 }

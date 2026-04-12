@@ -1,8 +1,12 @@
 ---
 /**
- * À propos — Fond vert forêt, texte blanc
+ * A propos — Fond vert foret, texte blanc
  * Fond : primary-900
+ * Contenu lu depuis src/content/about/index.json
  */
+import { getAbout } from '@data/content';
+
+const about = getAbout();
 ---
 
 <section id="apropos" class="py-16 md:py-24 bg-primary-900">
@@ -11,62 +15,38 @@
       <!-- Text -->
       <div class="md:w-3/5 mb-10 md:mb-0">
         <h2 class="font-heading text-3xl md:text-4xl font-bold text-white mb-6">
-          La maison et nous
+          {about.title}
         </h2>
         <div class="text-white/90 space-y-4 text-lg leading-relaxed">
-          <p>
-            Manon et François ont transformé une vieille bâtisse des Combrailles en un lieu où l'on mange ce qui pousse au jardin, où l'on dort bercé par le silence, où l'on repart un peu plus léger.
-          </p>
-          <p>
-            Manon est originaire de Lorraine. Dix ans dans la restauration, une passion pour la gastronomie française et le goût des bons produits. Au Refuge, elle met l'accent sur le local et la saison&nbsp;:
-          </p>
-          <blockquote class="border-l-4 border-accent-400 pl-4 italic text-white">
-            "Dans notre cuisine, nous utilisons au maximum des produits issus de notre jardin."
-          </blockquote>
-          <p>
-            François est voyageur, bon vivant, passionné de randonnée. Ce qu'il aime avant tout&nbsp;: recevoir chez lui et mettre ses invités dans le confort.
-          </p>
-          <p>
-            Le terrain de 3,5 hectares comprend basse-cour, potager en permaculture, arbres fruitiers et espaces de repos. Le Refuge est l'aboutissement de leur rêve&nbsp;: se ressourcer, se déconnecter, se réfugier.
-          </p>
+          {about.paragraphs.map((p, i) => (
+            <>
+              <p set:html={p.replace(/&nbsp;/g, '\u00a0').replace(/\u00a0:/g, '\u00a0:')} />
+              {i === about.quotePosition - 1 && about.quote && (
+                <blockquote class="border-l-4 border-accent-400 pl-4 italic text-white">
+                  "{about.quote}"
+                </blockquote>
+              )}
+            </>
+          ))}
         </div>
       </div>
 
-      <!-- Sidebar: à proximité -->
+      <!-- Sidebar: a proximite -->
       <aside class="md:w-2/5">
         <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 md:p-8">
           <h3 class="font-heading text-xl font-semibold text-white mb-4">
-            À proximité (moins de 10 min)
+            {about.proximityTitle}
           </h3>
           <ul class="space-y-3">
-            <li class="flex items-start gap-3 text-white/90">
-              <svg class="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
-              <span>Église de Biollet (XIe siècle)</span>
-            </li>
-            <li class="flex items-start gap-3 text-white/90">
-              <svg class="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
-              <span>Un des plus grands complexes bouddhistes tibétains d'Europe</span>
-            </li>
-            <li class="flex items-start gap-3 text-white/90">
-              <svg class="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
-              <span>Étang de Chancelade, plus vaste étang naturel du Puy-de-Dôme</span>
-            </li>
-            <li class="flex items-start gap-3 text-white/90">
-              <svg class="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
-              <span>Chemins de randonnées et cyclistes avec panorama sur la chaîne des Puys</span>
-            </li>
+            {about.proximityItems.map((item) => (
+              <li class="flex items-start gap-3 text-white/90">
+                <svg class="w-5 h-5 text-accent-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
           </ul>
           <a href={`https://www.google.com/maps/place/Le+refuge`} target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-2 text-accent-400 hover:text-accent-300 font-medium transition-colors min-h-[44px]">
             Voir sur Google Maps

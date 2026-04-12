@@ -1,0 +1,16 @@
+{
+  "title": "Le gîte — votre appartement sous les toits",
+  "description": "Appartement entièrement rénové sous les combles, pour 2 à 4 personnes. Cuisine toute équipée, chambre tout confort, salle de bain avec douche à l'italienne. Depuis la fenêtre, la campagne et la chaîne des Puys. Linge de maison fourni sur demande. Idéal pour un long week-end ou des vacances en famille.",
+  "priceNight": "82,50 €",
+  "priceNightNote": "/nuit (min. 2 nuits)",
+  "priceDetails": [
+    "462 € la semaine",
+    "Petit déjeuner en option : 7 €/pers./jour",
+    "Canapé convertible : +15 €/nuit",
+    "Ménage : 15 € + taxe de séjour 0,80 €/pers./nuit"
+  ],
+  "petsNote": "Animaux bienvenus : 10 € pour le séjour",
+  "image": "/images/gite-exterieur.jpg",
+  "imageAlt": "Vue extérieure du Refuge avec jardin, terrasse et verdure",
+  "ctaText": "Réserver le gîte"
+}

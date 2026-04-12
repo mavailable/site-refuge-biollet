@@ -1,17 +1,20 @@
 ---
 /**
- * Hero — Photo plein écran, overlay, H1 centré, CTAs
+ * Hero — Photo plein ecran, overlay, H1 centre, CTAs
  * Fond : image + overlay bg-black/40
+ * Contenu lu depuis src/content/hero/index.json
  */
+import { getHero } from '@data/content';
+
+const hero = getHero();
 ---
 
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
   <!-- Background image -->
-  <!-- TODO: Remplacer par <Image> d'astro:assets quand photo optimisée -->
   <div class="absolute inset-0">
     <img
-      src="/images/accueil-principale.jpg"
-      alt="Le Refuge, maison d'hôtes en pierre dans la campagne des Combrailles"
+      src={hero.image}
+      alt={hero.imageAlt}
       class="w-full h-full object-cover"
       fetchpriority="high"
     />
@@ -25,30 +28,30 @@
       <svg class="w-4 h-4 text-accent-400 mr-1.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
       </svg>
-      4.9/5 — 114 avis Google
+      {hero.badgeText}
     </div>
 
     <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
-      Restaurant et maison d'hôtes au cœur des Combrailles
+      {hero.title}
     </h1>
 
     <p class="intro-text text-lg sm:text-xl text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed">
-      Cuisine de marché, chambres d'hôtes et gîte à Biollet (63640). Manon cuisine les produits du jardin et des producteurs locaux. François vous accueille dans un cadre de nature et de calme.
+      {hero.subtitle}
     </p>
 
     <!-- CTAs -->
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="#contact" class="bg-accent-600 text-white font-semibold py-3 px-8 rounded hover:bg-accent-700 transition-colors min-h-[44px] inline-flex items-center justify-center text-lg">
-        Je réserve ma table
+      <a href={hero.ctaPrimaryHref} class="bg-accent-600 text-white font-semibold py-3 px-8 rounded hover:bg-accent-700 transition-colors min-h-[44px] inline-flex items-center justify-center text-lg">
+        {hero.ctaPrimary}
       </a>
-      <a href="#chambres" class="border-2 border-white text-white font-semibold py-3 px-8 rounded hover:bg-white/10 transition-colors min-h-[44px] inline-flex items-center justify-center text-lg">
-        Voir nos chambres
+      <a href={hero.ctaSecondaryHref} class="border-2 border-white text-white font-semibold py-3 px-8 rounded hover:bg-white/10 transition-colors min-h-[44px] inline-flex items-center justify-center text-lg">
+        {hero.ctaSecondary}
       </a>
     </div>
 
     <!-- Reassurance -->
     <p class="mt-6 text-white/90 text-sm">
-      Réservation obligatoire · 06 33 49 20 78 · Ouvert du mercredi au samedi
+      {hero.reassurance}
     </p>
   </div>
 

@@ -1,0 +1,9 @@
+{
+  "title": "Ce qu'en disent nos hôtes",
+  "stats": [
+    { "value": "4.9/5", "label": "Google — 114 avis" },
+    { "value": "5/5", "label": "TripAdvisor" },
+    { "value": "10", "label": "personnes max" },
+    { "value": "2022", "label": "ouverture" }
+  ]
+}
