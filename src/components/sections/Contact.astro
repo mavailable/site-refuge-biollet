@@ -4,10 +4,19 @@
  * Fond : primary-900
  * Contenu lu depuis src/content/contact/index.json + business.ts
  */
-import { business } from '@data/business';
+import { business, web3formsKey as fallbackKey } from '@data/business';
 import { getContact } from '@data/content';
+import fs from 'node:fs';
 
 const contact = getContact();
+
+// Web3Forms — cascade: CMS content → env var → cle Marc (defaut agence)
+let cmsKey = '';
+try {
+  const raw = fs.readFileSync('src/content/contact/index.json', 'utf-8');
+  cmsKey = JSON.parse(raw).web3formsKey || '';
+} catch {}
+const web3formsKey = cmsKey || fallbackKey;
 ---
 
 <section id="contact" class="py-16 md:py-24 bg-primary-900">
@@ -23,7 +32,7 @@ const contact = getContact();
         </p>
 
         <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
-          <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS" />
+          <input type="hidden" name="access_key" value={web3formsKey} />
           <input type="hidden" name="redirect" value={`${business.siteUrl}/merci`} />
           <input type="hidden" name="subject" value="Nouvelle demande — Le Refuge" />
           <input type="hidden" name="from_name" value="Le Refuge — Site web" />
