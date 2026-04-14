@@ -9,6 +9,19 @@ const cmsConfig: CmsConfig = {
   branch: 'dev',
   siteName: 'Le Refuge',
 
+  site: {
+    ownerName: 'Manon & Francois',
+    siteUrl: 'https://www.lerefuge63.fr',
+    previewUrl: 'https://site-refuge-biollet.pages.dev',
+    umamiSiteId: '744f16b6-29d5-4521-bd1a-5d42b0b8b114',
+    umamiShareUrl: 'https://cloud.umami.is/share/NtPxLXN4SHd6rSn4/www.lerefuge63.fr',
+    contactMarc: {
+      phone: '06 88 76 66 48',
+      whatsapp: '33688766648',
+      email: 'marc@muller.im',
+    },
+  },
+
   singletons: {
     'site-info': {
       label: 'Informations generales',

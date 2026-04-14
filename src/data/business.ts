@@ -53,6 +53,9 @@ const WEB3FORMS_DEFAULT = '9667fcf8-c7da-4b7a-8432-0ec25215c75e';
 export const web3formsDefault = WEB3FORMS_DEFAULT;
 export const web3formsKey = import.meta.env.WEB3FORMS_KEY || WEB3FORMS_DEFAULT;
 
+// Umami Analytics — injecté via variable d'environnement CF Pages
+export const umamiWebsiteId = import.meta.env.UMAMI_WEBSITE_ID || '';
+
 export const schemaData = {
   // Restaurant
   restaurantName: 'Le Refuge — Restaurant',
